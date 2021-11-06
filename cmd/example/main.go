@@ -3,11 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	lab2 "github.com/roman-mazur/architecture-lab-2"
+	//lab2 "https://github.com/Destaby/architecture-lab-2"
 )
 
 var (
 	inputExpression = flag.String("e", "", "Expression to compute")
+	inputFile       = flag.String("f", "", "File")
+	outputFile      = flag.String("o", "", "Output")
 	// TODO: Add other flags support for input and output configuration.
 )
 
@@ -22,6 +24,9 @@ func main() {
 	//       }
 	//       err := handler.Compute()
 
-	res, _ := lab2.PrefixToPostfix("+ 2 2")
-	fmt.Println(res)
+	//res, _ := lab2.CalculatePostfix("+ 2 2")
+	//fmt.Println(res)
+	fmt.Println("inputExpression", *inputExpression)
+	fmt.Println("inputFile", *inputFile)
+	fmt.Println("outputFile", *outputFile)
 }

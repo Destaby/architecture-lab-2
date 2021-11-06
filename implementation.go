@@ -1,7 +1,7 @@
 package lab2
 
 import (
-    "fmt"
+	"errors"
     "math"
     "strconv"
 )
@@ -36,16 +36,21 @@ func (array *Stack) Top() int {
     }
 }
 
-func CalculatePostfix(postfix string) int {
+func CalculatePostfix(postfix string) (int, error) {
     var calcArray Stack
+	if len(postfix) == 0 {
+		return 0, errors.New("Empty input")
+	};
+	var atLeastOneNumber bool = false
     for _, char := range postfix {
         opchar := string(char)
-				if opchar == " " {
-					continue
-				}
+		if opchar == " " {
+		    continue
+		}
         if opchar >= "0" && opchar <= "9" {
             i1, _ := strconv.Atoi(opchar)
             calcArray.Push(i1)
+			atLeastOneNumber = true
         } else {
             opr1 := calcArray.Top()
             calcArray.Pop()
@@ -66,8 +71,15 @@ func CalculatePostfix(postfix string) int {
 
             case '/':
                 calcArray.Push(opr2 / opr1)
+
+			default:
+				return 0, errors.New("Invalid input")	
             }
+
         }
     }
-    return calcArray.Top()
+	if !atLeastOneNumber {
+		return 0, errors.New("Invalid input")
+	}
+    return calcArray.Top(), nil
 }

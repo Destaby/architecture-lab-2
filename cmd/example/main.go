@@ -19,10 +19,6 @@ var (
 func main() {
 	flag.Parse()
 
-	fmt.Println("inputExpression", *inputExpression)
-	fmt.Println("inputFile", *inputFile)
-	fmt.Println("outputFile", *outputFile)
-
 	var err error
 
 	var fileOrExpression io.Reader
@@ -35,10 +31,8 @@ func main() {
 		fileOrExpression = strings.NewReader(*inputExpression)
 	}
 
-	// TODO
-
-	//var out io.Writer
-	//var outF *os.File
+	var out io.Writer
+	var outF *os.File
 
 	if *outputFile != "" {
 		outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)

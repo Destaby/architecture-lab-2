@@ -41,7 +41,7 @@ func main() {
   // var outF *os.File
 
   // if *outputFile != "" {
-    out = os.Stdout
+  out = os.Stdout
   // } else {
   //   outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
   //   out = outF.Writer

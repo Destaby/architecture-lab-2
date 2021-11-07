@@ -2,12 +2,12 @@ package lab2
 
 import (
 	"io"
-	"bytes"
 	"strings"
+	"bytes"
 	"strconv"
 )
 
-type ComputeHandler struct {
+type ComputeHandler struct { 
 	Input io.Reader
 	Output io.Writer
 }

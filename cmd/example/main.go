@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-
-	//"os"
-	//"io"
 	"strings"
 
 	lab2 "github.com/Destaby/architecture-lab-2"
@@ -40,8 +37,8 @@ func main() {
 
 	// TODO
 
-	var out io.Writer
-	var outF *os.File
+	//var out io.Writer
+	//var outF *os.File
 
 	if *outputFile != "" {
 		outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)

@@ -1,4 +1,4 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
----
+Лабораторна робота 2
 
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+https://github.com/Destaby/architecture-lab-2/actions/runs/1431468145
+https://github.com/Destaby/architecture-lab-2/actions/runs/1431481701

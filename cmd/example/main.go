@@ -65,5 +65,7 @@ func main() {
   handler := &lab2.ComputeHandler{fileOrExpression, out}
   err = handler.Compute()
 
-  fmt.Println(err)
+  if (err != nil) {
+    io.Copy(os.Stderr, strings.NewReader(err.Error()))
+  }
 }

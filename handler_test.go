@@ -24,5 +24,5 @@ func TestHandler(t *testing.T) {
 
   if assert.Nil(t, err) {
 	assert.Equal(t, "11", buf.String())
-}
+  }
 }

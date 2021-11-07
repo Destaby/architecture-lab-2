@@ -38,29 +38,18 @@ func main() {
 
   var out io.Writer
 
-  // var outF *os.File
+  var outF os.File
 
-  // if *outputFile != "" {
-  out = os.Stdout
-  // } else {
-  //   outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
-  //   out = outF.Writer
-  //   defer outF.Close()
-  //   // var _, err = os.Stat(*outputFile)
-
-  //   // if os.IsNotExist(err) {
-  //   //   out, err = os.Create(*outputFile)
-  //   //   defer out.Close()
-  //   // } else {
-  //   //   out, err = os.Open(*outputFile)
-  //   //   defer out.Close()
-  //   // }
-  //   if err != nil {
-  //     panic(err)
-  //   }
-  // }
-
-  // END TODO
+  if *outputFile != "" {
+    out = os.Stdout
+  } else {
+    outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
+    out = &outF
+    if err != nil {
+      panic(err)
+    }
+    defer outF.Close()
+  }
  
   handler := &lab2.ComputeHandler{fileOrExpression, out}
   err = handler.Compute()

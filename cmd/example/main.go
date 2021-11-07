@@ -19,6 +19,10 @@ var (
 func main() {
 	flag.Parse()
 
+	fmt.Println("inputExpression", *inputExpression)
+	fmt.Println("inputFile", *inputFile)
+	fmt.Println("outputFile", *outputFile)
+
 	var err error
 
 	var fileOrExpression io.Reader
@@ -30,6 +34,7 @@ func main() {
 	} else {
 		fileOrExpression = strings.NewReader(*inputExpression)
 	}
+
 
 	var out io.Writer
 	var outF *os.File

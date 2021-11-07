@@ -37,18 +37,16 @@ func main() {
   // TODO
 
   var out io.Writer
-
-  var outF os.File
+  var outF *os.File
 
   if *outputFile != "" {
-    out = os.Stdout
-  } else {
     outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
-    out = &outF
+    out = outF
     if err != nil {
       panic(err)
     }
-    defer outF.Close()
+  } else {
+		out = os.Stdout
   }
  
   handler := &lab2.ComputeHandler{fileOrExpression, out}

@@ -1,12 +1,30 @@
 package lab2
 
-// ComputeHandler should be constructed with input io.Reader and output io.Writer.
-// Its Compute() method should read the expression from input and write the computed result to the output.
+import (
+	"io"
+	"bytes"
+	"strings"
+	"strconv"
+)
+
 type ComputeHandler struct {
-	// TODO: Add necessary fields.
+	Input io.Reader
+	Output io.Writer
 }
 
 func (ch *ComputeHandler) Compute() error {
-	// TODO: Implement.
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(ch.Input)
+
+	res, err := CalculatePostfix(buf.String())
+	if (err != nil) {
+		return err
+	}
+
+	resString := strconv.Itoa(res)
+	_, err = io.Copy(ch.Output, strings.NewReader(resString))
+	if (err != nil) { 
+		return err
+	}
 	return nil
 }

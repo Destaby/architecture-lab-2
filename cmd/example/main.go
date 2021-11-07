@@ -1,32 +1,69 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	//lab2 "https://github.com/Destaby/architecture-lab-2"
+  "flag"
+  "fmt"
+  "os"
+  "io"
+  "strings"
+  lab2 "github.com/Destaby/architecture-lab-2"
 )
 
 var (
-	inputExpression = flag.String("e", "", "Expression to compute")
-	inputFile       = flag.String("f", "", "File")
-	outputFile      = flag.String("o", "", "Output")
-	// TODO: Add other flags support for input and output configuration.
+  inputExpression = flag.String("e", "", "Expression to compute")
+  inputFile       = flag.String("f", "", "File")
+  outputFile      = flag.String("o", "", "Output")
 )
 
 func main() {
-	flag.Parse()
+  flag.Parse()
 
-	// TODO: Change this to accept input from the command line arguments as described in the task and
-	//       output the results using the ComputeHandler instance.
-	//       handler := &lab2.ComputeHandler{
-	//           Input: {construct io.Reader according the command line parameters},
-	//           Output: {construct io.Writer according the command line parameters},
-	//       }
-	//       err := handler.Compute()
+  fmt.Println("inputExpression", *inputExpression)
+  fmt.Println("inputFile", *inputFile)
+  fmt.Println("outputFile", *outputFile)
 
-	//res, _ := lab2.CalculatePostfix("+ 2 2")
-	//fmt.Println(res)
-	fmt.Println("inputExpression", *inputExpression)
-	fmt.Println("inputFile", *inputFile)
-	fmt.Println("outputFile", *outputFile)
+  var err error
+
+  var fileOrExpression io.Reader
+  if *inputFile != "" {
+    fileOrExpression, err = os.Open(*inputFile)
+    if err != nil {
+      panic(err)
+    }
+  } else {
+    fileOrExpression = strings.NewReader(*inputExpression)
+  }
+
+  // TODO
+
+  var out io.Writer
+
+  // var outF *os.File
+
+  // if *outputFile != "" {
+    out = os.Stdout
+  // } else {
+  //   outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
+  //   out = outF.Writer
+  //   defer outF.Close()
+  //   // var _, err = os.Stat(*outputFile)
+
+  //   // if os.IsNotExist(err) {
+  //   //   out, err = os.Create(*outputFile)
+  //   //   defer out.Close()
+  //   // } else {
+  //   //   out, err = os.Open(*outputFile)
+  //   //   defer out.Close()
+  //   // }
+  //   if err != nil {
+  //     panic(err)
+  //   }
+  // }
+
+  // END TODO
+ 
+  handler := &lab2.ComputeHandler{fileOrExpression, out}
+  err = handler.Compute()
+
+  fmt.Println(err)
 }

@@ -38,6 +38,8 @@ func main() {
 	var out io.Writer
 	var outF *os.File
 
+	defer outF.Close()
+
 	if *outputFile != "" {
 		outF, err = os.OpenFile(*outputFile, os.O_WRONLY|os.O_CREATE, 0600)
 		out = outF
